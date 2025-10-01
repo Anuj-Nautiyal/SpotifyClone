@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify - Web Player: Music for everyone
+    </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="leftside">
+                <div class="hamburger">
+                    <img class="hamburger-img" src="svgs/hamburger.svg" alt="">
+                </div>
+                <div class="logo"><img src="svgs/logo.svg" alt="logo"></div>
+
+                <button class="btn home"><img src="svgs/home.svg" alt="home"></button>
+
+                <div class="search_box">
+                    <div class="search_icon"><img src="svgs/search.svg" alt="search"></div>
+                    <input class="search_button" type="text" placeholder="What do you want to play?">
+                </div>
+            </div>
+
+            <div class="rightside">
+                <button class="sign_in">Sign up</button>
+                <button class="log_in">Log in</button>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="leftbox">
+            <div class="library">
+                <h2>Your Library</h2>
+                <div class="close">
+                    <img src="svgs/close.svg" alt="">
+                </div>
+            </div>
+
+            <div class="songlist my-container">
+                <ul></ul>
+            </div>
+
+            <footer>
+                <div class="links">
+                    <span>
+                        <a href="https://www.spotify.com/in-en/legal/">Legal</a>
+                    </span>
+                    <span>
+                        <a href="https://www.spotify.com/in-en/safetyandprivacy/">Safety &amp; Privacy Center</a>
+                    </span>
+                    <span>
+                        <a href="https://www.spotify.com/in-en/legal/privacy-policy/">Privacy Policy</a>
+                    </span>
+                    <span>
+                        <a href="https://www.spotify.com/in-en/legal/cookies-policy/">Cookies</a>
+                    </span>
+                    <span>
+                        <a href="https://www.spotify.com/in-en/legal/privacy-policy/#s3">About Ads</a>
+                    </span>
+                    <span>
+                        <a href="https://www.spotify.com/in-en/accessibility/">Accessibility</a>
+                    </span>
+                </div>
+                <div class="language">
+                    <button>
+                        <span>
+                            <img src="svgs/globe.svg" alt="">
+                        </span>
+                        <span>
+                            <select name="language" id="" class="lang">
+                                <option value="English">English</option>
+                                <option value="Hindi">Hindi</option>
+                            </select>
+                        </span>
+                    </button>
+                </div>
+            </footer>
+        </div>
+
+        <div class="rightbox">
+            <div class="spotifyPlaylist">
+                <div class="heading"><h2>Spotify Playlist</h2></div>
+                <div class="cardcontainer my-container"></div>
+
+                <div class="playbar">
+                    <div class="upperhalf">
+                        <div class="songtrack"></div>
+                        <div class="songbuttons">
+                            <button><img id="previous" src="svgs/previous.svg" alt=""></button>
+                            <button><img id="play" src="svgs/songplay.svg" alt=""></button>
+                            <button><img id="next" src="svgs/next.svg" alt=""></button>
+                            <div class="volume">
+                                <button><img id="volume-btn" src="svgs/volume.svg" alt=""></button>
+                                <div class="range">
+                                    <input type="range">
+                                </div>
+                                <div class="tooltip">50</div>
+                            </div>
+                        </div>
+                        <div class="songduration"></div>
+                    </div>
+                    <div class="seekbar">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
