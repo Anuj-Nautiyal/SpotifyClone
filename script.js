@@ -26,7 +26,7 @@ async function getsongs(folder) {
     for (let index = 0; index < as.length; index++) {
         const element = as[index];
         if (element.href.endsWith(".mp3")) {
-            songs.push(element.href.split(`/${currFolder}/`)[1].split(".mp3")[0]);
+            songs.push(element.href.split(`${currFolder}/`)[1].split(".mp3")[0]);
         }
     }
 
@@ -162,7 +162,7 @@ async function main() {
     });
 
     previous.addEventListener("click", () => {
-        let index = songs.indexOf(currentSong.src.split(`/${currFolder}/`)[1].split(".mp3")[0]);
+        let index = songs.indexOf(currentSong.src.split(`${currFolder}/`)[1].split(".mp3")[0]);
         if ((index - 1) >= 0) {
             playMusic(songs[index - 1], true);
         } else {
@@ -171,7 +171,7 @@ async function main() {
     });
 
     next.addEventListener("click", () => {
-        let index = songs.indexOf(currentSong.src.split(`/${currFolder}/`)[1].split(".mp3")[0]);
+        let index = songs.indexOf(currentSong.src.split(`${currFolder}/`)[1].split(".mp3")[0]);
         if ((index + 1) < songs.length) {
             playMusic(songs[index + 1], true);
         } else {
