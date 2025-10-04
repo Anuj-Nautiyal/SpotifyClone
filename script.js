@@ -14,11 +14,14 @@ async function getsongs(folder) {
     currFolder = folder;
     let a = await fetch(`/${currFolder}/`);
     let response = await a.text();
+    // console.log(response.replaceAll("%5C", "/"));
+    
 
     let div = document.createElement("div");
-    div.innerHTML = response;
+    div.innerHTML = response.replaceAll("%5C", "/");
 
     let as = div.getElementsByTagName("a");
+    
     songs = [];
     for (let index = 0; index < as.length; index++) {
         const element = as[index];
@@ -26,7 +29,8 @@ async function getsongs(folder) {
             songs.push(element.href.split(`/${currFolder}/`)[1].split(".mp3")[0]);
         }
     }
-    
+
+    console.log(songs);
     //show all the songs in the playlist
     let songUL = document.querySelector(".songlist").getElementsByTagName("ul")[0];
     songUL.innerHTML = "";
@@ -64,8 +68,9 @@ const playMusic = (track, pause = false) => {
 async function displayAlbums() {
     let a = await fetch("/songs/");
     let response = await a.text();
+    
     let div = document.createElement("div");
-    div.innerHTML = response;
+    div.innerHTML = response.replaceAll("%5C", "/");
     let anchors = div.getElementsByTagName("a");
 
     let cardcontainer = document.querySelector(".cardcontainer");
@@ -104,7 +109,6 @@ async function main() {
 
     //get songs from first song folder and show it in the playlist
     await getsongs("Songs/Arijit");
-    console.log(songs);
     playMusic(songs[0], true);
 
     //display all the albums on the website
