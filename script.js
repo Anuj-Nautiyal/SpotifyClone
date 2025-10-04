@@ -17,6 +17,7 @@ const playMusic = (track, pause = false) => {
     currentSong.src = `${currentFolder}/` + track;
     document.querySelector(".songtrack").innerHTML = decodeURI(track).replace(/\.[^/.]+$/, "");
     document.querySelector(".songduration").innerHTML = "00:00 / 00:00";
+    document.querySelector(".circle").style.left = "0%";
     if (!pause) {
         currentSong.play();
         play.src = "svgs/pause.svg";
@@ -39,7 +40,7 @@ function getsongs(albumFolder) {
     for (const song of songs) {
         const displayName = song.replace(/\.[^/.]+$/, "");
 
-        songUL.innerHTML += `<li>
+        songUL.innerHTML += `<li data-song="${song}">
             <img src="svgs/music.svg" alt="">
             <div class="songnames">
                 <div>${displayName.replaceAll("%20", " ")}</div>
@@ -53,9 +54,9 @@ function getsongs(albumFolder) {
 
     // Add click listeners to the new list items
     Array.from(songUL.getElementsByTagName("li")).forEach(e => {
-        e.addEventListener("click", () => {
-            const songName = e.querySelector(".songnames").firstElementChild.innerHTML.trim();
-            playMusic(songName, true);
+        e.addEventListener("click", (event) => {
+            const songName = event.currentTarget.dataset.song;
+            playMusic(songName);
         });
     });
 }
@@ -128,6 +129,7 @@ async function main() {
     currentSong.addEventListener("timeupdate", () => {
         document.querySelector(".songduration").innerHTML = `${formatTime(currentSong.currentTime)} / ${formatTime(currentSong.duration)}`;
         document.querySelector(".circle").style.left = (currentSong.currentTime / currentSong.duration) * 100 + "%";
+        if(currentSong.ended) { play.src = "svgs/songplay.svg"; };
     });
 
     // Seekbar click event
@@ -177,7 +179,7 @@ async function main() {
         currentSong.volume = parseInt(e.target.value) / 100;
         tooltip.textContent = e.target.value;
     });
-    
+
     // Mute button
     document.getElementById("volume-btn").addEventListener("click", e => {
         if (e.target.src.includes("volume.svg")) {
