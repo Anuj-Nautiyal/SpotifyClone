@@ -49,15 +49,14 @@ nav .leftside {
 }
 
 nav input {
-    width: 25vw;
-    max-width: 400px;
+    width: 30vw;
     padding: 13px 15vw 13px 50px;
     border: none;
     border-radius: 500px;
     background-color: rgb(42 41 41 / 70%);
     cursor: text;
     color: white;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 600;
     position: relative;
 }
