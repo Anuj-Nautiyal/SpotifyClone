@@ -66,7 +66,7 @@ const playMusic = (track, pause = false) => {
 }
 
 async function displayAlbums() {
-    let a = await fetch("/songs/");
+    let a = await fetch("/Songs/");
     let response = await a.text();
     
     let div = document.createElement("div");
@@ -77,10 +77,10 @@ async function displayAlbums() {
     let array = Array.from(anchors);
     for (let index = 0; index < array.length; index++) {
         const e = array[index];
-        if (e.href.includes("/songs/")) {
-            let songFolder = e.href.split("/songs/")[1].replace("/", "");
+        if (e.href.includes("/Songs/")) {
+            let songFolder = e.href.split("/Songs/")[1].replace("/", "");
 
-            let a = await fetch(`/songs/${songFolder}/info.json`);
+            let a = await fetch(`/Songs/${songFolder}/info.json`);
             let response = await a.json();
 
             cardcontainer.innerHTML = cardcontainer.innerHTML +   
@@ -99,7 +99,7 @@ async function displayAlbums() {
     }
     Array.from(document.getElementsByClassName("cards")).forEach(item => {
         item.addEventListener("click", async e => {
-            songs = await getsongs(`songs/${e.currentTarget.dataset.folder}`);
+            songs = await getsongs(`Songs/${e.currentTarget.dataset.folder}`);
             playMusic(songs[0], true);
         });
     });
