@@ -12,7 +12,7 @@ function formatTime(time) {
 
 async function getsongs(folder) {
     currFolder = folder;
-    let a = await fetch(`/${currFolder}/`);
+    let a = await fetch(`${currFolder}/`);
     let response = await a.text();
     // console.log(response.replaceAll("%5C", "/"));
     
@@ -55,7 +55,7 @@ async function getsongs(folder) {
 }
 
 const playMusic = (track, pause = false) => {
-    currentSong.src = `/${currFolder}/` + track + ".mp3";
+    currentSong.src = `${currFolder}/` + track + ".mp3";
     if (pause) {
         play.src = "svgs/songplay.svg";
         document.querySelector(".circle").style.left = 0;
@@ -66,7 +66,7 @@ const playMusic = (track, pause = false) => {
 }
 
 async function displayAlbums() {
-    let a = await fetch("/Songs/");
+    let a = await fetch("Songs/");
     let response = await a.text();
     
     let div = document.createElement("div");
@@ -80,7 +80,7 @@ async function displayAlbums() {
         if (e.href.includes("/Songs/")) {
             let songFolder = e.href.split("/Songs/")[1].replace("/", "");
 
-            let a = await fetch(`/Songs/${songFolder}/info.json`);
+            let a = await fetch(`Songs/${songFolder}/info.json`);
             let response = await a.json();
 
             cardcontainer.innerHTML = cardcontainer.innerHTML +   
