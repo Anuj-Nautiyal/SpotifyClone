@@ -86,7 +86,7 @@ async function displayAlbums() {
             cardcontainer.innerHTML = cardcontainer.innerHTML +   
             `<div data-folder="${songFolder}" class="cards">
                 <div class="cardimage">
-                    <img src="/songs/${songFolder}/coverpage.jpg" alt="">
+                    <img src="Songs/${songFolder}/coverpage.jpg" alt="">
                 </div>
 
                 <div class="play">
