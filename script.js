@@ -112,8 +112,6 @@ async function main() {
         playMusic(firstAlbum.songs[0], true);
     }
 
-    // --- Event Listeners for Player Controls ---
-
     // Play/Pause button
     play.addEventListener("click", () => {
         if (currentSong.paused) {
