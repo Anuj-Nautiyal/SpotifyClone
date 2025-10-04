@@ -221,14 +221,14 @@ function formatTime(time) {
 
 // Function to play a music track
 const playMusic = (track, pause = false) => {
-    currentSong.src = `${currentFolder}/` + track + ".mp3";
+    currentSong.src = `${currentFolder}/` + track;
     if (!pause) {
         currentSong.play();
         play.src = "svgs/pause.svg";
     } else {
         play.src = "svgs/songplay.svg";
     }
-    document.querySelector(".songtrack").innerHTML = decodeURI(track);
+    document.querySelector(".songtrack").innerHTML = decodeURI(track).replace(/\.[^/.]+$/, "");
     document.querySelector(".songduration").innerHTML = "00:00 / 00:00";
 }
 
@@ -244,10 +244,12 @@ function getsongs(albumFolder) {
     let songUL = document.querySelector(".songlist ul");
     songUL.innerHTML = "";
     for (const song of songs) {
+        const displayName = song.replace(/\.[^/.]+$/, "");
+
         songUL.innerHTML += `<li>
             <img src="svgs/music.svg" alt="">
             <div class="songnames">
-                <div>${song.replaceAll("%20", " ")}</div>
+                <div>${displayName.replaceAll("%20", " ")}</div>
             </div>
             <div class="playnow">
                 <span>Play Now</span>
@@ -260,7 +262,7 @@ function getsongs(albumFolder) {
     Array.from(songUL.getElementsByTagName("li")).forEach(e => {
         e.addEventListener("click", () => {
             const songName = e.querySelector(".songnames").firstElementChild.innerHTML.trim();
-            playMusic(songName);
+            playMusic(songName, true);
         });
     });
 }
@@ -355,24 +357,24 @@ async function main() {
     // Previous button
     previous.addEventListener("click", () => {
         if (!songs || songs.length === 0) return;
-        const currentTrackName = decodeURI(currentSong.src.split("/").pop().replace(".mp3", ""));
+        const currentTrackName = decodeURI(currentSong.src.split("/").pop());
         let index = songs.indexOf(currentTrackName);
         if ((index - 1) >= 0) {
-            playMusic(songs[index - 1]);
+            playMusic(songs[index - 1], true);
         } else {
-            playMusic(songs[songs.length - 1]); // Loop to the last song
+            playMusic(songs[songs.length - 1], true); // Loop to the last song
         }
     });
 
     // Next button
     next.addEventListener("click", () => {
         if (!songs || songs.length === 0) return;
-        const currentTrackName = decodeURI(currentSong.src.split("/").pop().replace(".mp3", ""));
+        const currentTrackName = decodeURI(currentSong.src.split("/").pop());
         let index = songs.indexOf(currentTrackName);
         if ((index + 1) < songs.length) {
-            playMusic(songs[index + 1]);
+            playMusic(songs[index + 1], true);
         } else {
-            playMusic(songs[0]); // Loop to the first song
+            playMusic(songs[0], true); // Loop to the first song
         }
     });
 
