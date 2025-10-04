@@ -50,13 +50,13 @@ nav .leftside {
 
 nav input {
     width: 30vw;
-    padding: 13px 15vw 13px 50px;
+    padding: 13px 0px 13px 50px;
     border: none;
     border-radius: 500px;
     background-color: rgb(42 41 41 / 70%);
     cursor: text;
     color: white;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 600;
     position: relative;
 }
