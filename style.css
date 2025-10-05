@@ -44,26 +44,32 @@ nav .leftside {
 
 .search_box {
     display: flex;
-    justify-content: flex-start;
     align-items: center;
+    gap: 10px;
+
+    width: 30vw;
+    background-color: #2a2929b3;
+
+    padding: 5px 10px;
+    border-radius: 100vw;
 }
 
-nav input {
-    width: 30vw;
-    padding: 13px 0px 13px 50px;
-    border: none;
-    border-radius: 500px;
-    background-color: rgb(42 41 41 / 70%);
-    cursor: text;
+.search_box:focus-within {
+    outline: 2px solid white;
+}
+
+.search_button {
+    background-color: transparent;
     color: white;
+
+    border: none;
+
     font-size: 18px;
     font-weight: 600;
-    position: relative;
 }
 
-.search_icon {
-    position: absolute;
-    transform: translateX(8px);
+.search_button:focus {
+    outline: none;
 }
 
 .rightside {
